@@ -30,21 +30,23 @@ for key in scaffolds:
     links_list = []
     label_list = []
     prev_node = None
+    i = 0
     for contigs in scaffolds[key]:
-
-        dot.node(contigs[0], label = contigs[0] + '\n' + contigs[1][4:])
+        
+        dot.node(contigs[0]+str(i), label = contigs[0] + '\n' + contigs[1][4:])
         label_list.append(contigs[0])
-        cur_node = contigs[0]
+        cur_node = contigs[0] + str(i)
         if prev_node is None:
-            prev_node = contigs[0]
+            prev_node = contigs[0] + str(i)
             links = contigs[2][5:]
             links_list.append(links)
         else:
             dot.edge(prev_node, cur_node, label=links, len='2.00')
-            prev_node = contigs[0]
+            prev_node = contigs[0] + str(i)
             if len(contigs) >= 3:
                 links = contigs[2][5:]
                 links_list.append(links)
+        i += 1
     print(dot.source)
 
     dot.render(key, view=False)
