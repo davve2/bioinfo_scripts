@@ -4,7 +4,7 @@ from Bio import SeqIO
 
 seqDir = sys.argv[1]
 assemblySummary = sys.argv[2]
-
+outdir = sys.argv[3]
 seqFiles = [x for x in os.listdir(seqDir)]
 
 assemblyDict = {}
@@ -21,14 +21,18 @@ for file in seqFiles:
         records = SeqIO.parse(seqDir + file, "fasta")
         for record in records:
             assemblyKey = 'GCF_' + assemblyName.split("_")[1]
+            if len(record.seq) == 0:
+                print("ERROR: Empty record " + assemblyKey)
+                pass
             try:
                 taxid = assemblyDict[assemblyKey][5]
                 name = assemblyDict[assemblyKey][7]
                 assemblyStatus = assemblyDict[assemblyKey][10]
                 id = record.id.split("|")[0]
-                record.id = id + "|kraken:taxid|" + taxid + " " + name + ", " + assemblyStatus
-                SeqIO.write(record, seqDir + file, 'fasta')
+                record.id = id + "|kraken:taxid|" + taxid 
+                record.description = name + ", " + assemblyStatus
+                SeqIO.write(record, outdir + file, 'fasta')
             except:
-                print(assemblyKey)
+                print('ERROR: ' + assemblyKey)
                 pass
 

@@ -12,7 +12,7 @@ summary = pd.read_csv(summary_file, sep = '\t')
 # **** Calculate some statistics ****
 nr_reads = summary.shape[0]
 mean_read_length = np.mean(summary['sequence_length_template'])
-throughput_gb = sum(summary['sequence_length_template'])/1000000000
+throughput_gb = sum(summary['sequence_length_template'])/float(1000000000)
 throughput = sum(summary['sequence_length_template'])
 max_read_length = np.max(summary['sequence_length_template'])
 
@@ -21,5 +21,4 @@ print("==== Albacore statistics =====")
 print("Number of reads: %d" % (nr_reads))
 print("Avg. read length: %.2fbp" % (mean_read_length))
 print("Max read length: %dbp" % (max_read_length))
-print("Throughput: %.8fGb" % (throughput_gb))
-print("Throughput: %dbp" % (throughput))
+print("Throughput: %.2fGb" % (throughput_gb))
