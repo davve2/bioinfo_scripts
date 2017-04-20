@@ -20,7 +20,11 @@ for file in seqFiles:
     if ext == '.fna':
         records = SeqIO.parse(seqDir + file, "fasta")
         for record in records:
+            print('Record ID: ' + record.id)
+            print('Record Description: ' + record.description)
             assemblyKey = 'GCF_' + assemblyName.split("_")[1]
+            print('Assembly Name: ' + assemblyDict[assemblyKey][7])
+            print('TaxID: ' + assemblyDict[assemblyKey][6])
             if len(record.seq) == 0:
                 print("ERROR: Empty record " + assemblyKey)
                 pass
