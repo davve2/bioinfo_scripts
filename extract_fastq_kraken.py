@@ -1,6 +1,7 @@
-#!/usr/bin/envs python2.7
+#!/usr/bin/env python2.7
 ''' Script to extract fastq sequences mapping to taxid in kraken '''
 import os
+import sys
 import argparse
 import subprocess
 import pandas as pd

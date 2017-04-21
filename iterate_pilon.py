@@ -130,8 +130,8 @@ def main():
         run_pilon(bam_sorted_file, reference_genome, pilon_output, threads, pilon_path)
 
         # Set pilon output to new reference
-        reference_genome = os.path.join(output, 'pilon_' + str(1) + '.fasta')
-        pilon_output = os.path.join(output, 'pilon_' + str(i + 1))
+        reference_genome = os.path.join(output, 'pilon_' + str(i + 1) + '.fasta')
+        pilon_output = os.path.join(output, 'pilon_' + str(i + 2))
 
 if __name__ == '__main__':
     main()
