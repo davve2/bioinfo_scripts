@@ -100,6 +100,12 @@ def main():
  
     taxid = args.tax_id
     
+    # Extract unclassified reads
+    if int(taxid) == 0:
+        if args.descendents == True:
+            print("Warning: --descendents will be unset for unclassified reads")
+            args.descendents = False
+
     # Read Taxonomy tree 
     if args.descendents: # Use NCBI taxonomy to extract sequences from descendents
         print("Load NCBI taxonomy")
