@@ -5,7 +5,7 @@ import numpy as np
 
 # **** Import file ****
 if len(sys.argv) != 2:
-    sys.exit("Usage: python albasummary.py sequencing_summary.txt")
+        sys.exit("Usage: python albasummary.py sequencing_summary.txt")
 summary_file = sys.argv[1]
 summary = pd.read_csv(summary_file, sep = '\t')
 
@@ -22,3 +22,8 @@ print("Number of reads: %d" % (nr_reads))
 print("Avg. read length: %.2fbp" % (mean_read_length))
 print("Max read length: %dbp" % (max_read_length))
 print("Throughput: %.2fGb" % (throughput_gb))
+
+if summary.shape[1] == 25:
+    barcodes = summary['barcode_arrangement'].astype('category')
+    print("\n===== Barcodes ======")
+    print(barcodes.value_counts())
