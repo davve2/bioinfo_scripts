@@ -23,9 +23,9 @@ kraken database. The `--merge` command will write all sequences to one fastq-fil
 To extract unclassified reads, use `--tax_id 0`.  
 
 **Requirements**
-*seqtk
-*pandas
-*[ncbiTaxonomyTree](https://github.com/frallain/NCBI_taxonomy_tree)
+* seqtk
+* pandas
+* [ncbiTaxonomyTree](https://github.com/frallain/NCBI_taxonomy_tree)
 
 ### iterate_pilon.py
 Script to run pilon iteratively.
