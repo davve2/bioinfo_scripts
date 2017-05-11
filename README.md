@@ -29,3 +29,6 @@ To extract unclassified reads, use `--tax_id 0`.
 
 ### iterate_pilon.py
 Script to run pilon iteratively.
+
+### albacore_live_wrapper.py
+Run albacore basecalling when a new directory with reads is created.
