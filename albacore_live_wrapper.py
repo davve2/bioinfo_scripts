@@ -47,19 +47,14 @@ def parse_arguments():
 
     parser.add_argument('--watch', '-w', help='Output directory for MinKnow',
                         required=True)
-
     parser.add_argument('--output', '-o', help='Save basecalled directories here',
                         required=True)
-
     parser.add_argument('--threads', '-t', help='Threads to run albacore with',
                         required=True)
-
     parser.add_argument('--flowcell', '-f', help='Flowcell version',
                         required=True)
-
     parser.add_argument('--kit', '-k', help='Sequencing kit',
                         required=True)
-
     parser.add_argument('--barcoding', '-b', action='store_true', help='Demultiplex')
 
     args = parser.parse_args()
@@ -78,8 +73,8 @@ if __name__ == '__main__':
         os.mkdir(args.output)
 
     observer = Observer()
-    watcher = Watcher()
-    observer.schedule(watcher, args)
+    watcher = Watcher(args)
+    observer.schedule(watcher, args.watch)
     observer.start()
     try:
         while True:
@@ -87,13 +82,3 @@ if __name__ == '__main__':
     except KeyboardInterrupt:
         observer.stop()
     observer.join()
-
-# Check for new folder in directory
-
-# Add folder to queue
-
-# Run albacore on first folder in queue
-
-# Output results to folder with same name as input, but add basecalled
-
-# Remove folder from queue
